@@ -24,7 +24,6 @@ export const SurveyProvider = ({ children }) => {
   const [answers, setAnswers] = useState({})
 
   const saveAnswers = (newAnswer) => {
-    //setAnswers(answers.push(newAnswer));
     setAnswers({ ...answers, ...newAnswer })
   }
 

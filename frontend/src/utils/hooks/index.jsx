@@ -16,14 +16,16 @@ export const useFetch = (url) => {
             
             try {
                 const response = await fetch(url)
-                const data = await response.json();
-                setData(data)
+                if (! response.ok) {
+                    const { errorMessage } = await response.json() 
+                    throw new Error(errorMessage)
+                } else {
+                    const data = await response.json();
+                    setData(data)
+                }
             } catch(error) {
-
-                console.log(error);
-                setError(true)
-            } finally {
-                
+                setError(error.message)
+            } finally {                
                 setLoading(false);
             }
         }
